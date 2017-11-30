@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Set up base16 shell theme.
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow-night.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+# This is the default path for the go executable.
+export PATH="$PATH:/usr/local/go/bin"
+
+export GOPATH="$HOME/dev/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# Aliases.
+alias ll='ls -laG --color'
