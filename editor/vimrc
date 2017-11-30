@@ -1,0 +1,159 @@
+set nocompatible
+inoremap jk <esc>
+
+filetype off " required by Vundle
+
+" Set the runtime path to include Vundle and initialize.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle, required.
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'chriskempson/base16-vim'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'fatih/vim-go'
+
+" All Plugins must be added before the following line.
+call vundle#end()         " required by Vundle
+filetype plugin indent on " required by Vundle
+
+" Colorscheme settings.
+syntax on
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+let base16colorspace=256
+set background=dark
+colorscheme base16-tomorrow
+
+" Reload files changed outside of vim.
+set autoread
+
+" Vim command line history.
+set history=100
+
+" Show relative line numbers.
+set number
+set relativenumber
+
+" Start scrolling five lines before the horizontal window border.
+set scrolloff=5
+
+" Highlight matching parenthesis.
+set showmatch
+
+" Show the filename in the window titlebar.
+set title
+
+" Always display the status line.
+set laststatus=2
+
+" Copy the indentation from the previous line, when starting a new line.
+set autoindent
+
+" Tab to spaces.
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Automatically save changes when focus lost.
+set autowrite
+
+" Automatically strip trailing whitespace on save.
+autocmd BufWritePre <buffer> StripWhitespace
+
+" Add ruler.
+set colorcolumn=80
+
+" Change the default mapping and the default command to invoke CtrlP.
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = '0'
+
+" Remap moving across buffers.
+nnoremap g] :bn<CR>
+nnoremap g[ :bp<CR>
+
+" create :W command, same as :w.
+command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
+
+" Airline settings.
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':.'
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline_section_z = airline#section#create(['line: %l/%L col: %c'])
+
+" Airline theme.
+let g:airline_theme='minimalist'
+
+" Airline symbols.
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" Airline unicode symbols.
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" Install patched font:
+" https://github.com/powerline/fonts/raw/master/Meslo/Meslo%20LG%20M%20DZ%20Regular%20for%20Powerline.otf
+" Set as non-ascii font for terminal.
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" Go specific settings.
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_highlight_operators=1
+let g:go_highlight_build_constraints=1
+let g:go_fmt_command="goimports"
+nnoremap <C-l> :GoDecls<CR>
+
+" HTML specific settings.
+augroup filetype_html
+    autocmd!
+    autocmd FileType html setlocal shiftwidth=2 tabstop=2
+augroup END
+
+" C++ specific settings.
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+" Syntastic settings.
+let g:syntastic_check_on_wq = 0
+
+" Make Syntastic passive mode default.
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+" Turn on syntactic checkers and perform a syntax check.
+nnoremap <C-w> :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+" Show syntastic errors in the status line.
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
