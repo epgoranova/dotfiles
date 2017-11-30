@@ -1,0 +1,42 @@
+[alias]
+    a = add
+    aa = add -A
+    ap = add -p
+    au = add -u
+
+    back = reset --soft HEAD~
+
+    co = checkout
+
+    c = commit
+    ca = commit --amend
+    cm = commit -m
+
+    l = log --graph --pretty=short -n 12
+
+    ri = rebase -i
+    rc = rebase --continue
+    rs = rebase --skip
+    ra = rebase --abort
+
+    s = status
+
+    wipe = "! git branch --merged | grep -v master | xargs git branch -d"
+
+[branch]
+    autosetuprebase = always
+
+[color]
+    ui = auto
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+    autocrlf = false
+
+[push]
+    default = tracking
+
+[user]
+    name = Ekaterina Goranova
+    email = epgoranova@gmail.com
