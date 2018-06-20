@@ -157,3 +157,6 @@ nnoremap <C-w> :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
