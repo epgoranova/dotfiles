@@ -19,3 +19,7 @@ source ~/.bash/git-completion.sh
 
 # Aliases.
 alias ll='ls -laG --color'
+
+# Set preferred editor.
+export VISUAL="vim"
+export EDITOR="$VISUAL"
