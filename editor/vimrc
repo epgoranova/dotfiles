@@ -70,9 +70,6 @@ set autowrite
 " Automatically strip trailing whitespace on save.
 autocmd BufWritePre <buffer> StripWhitespace
 
-" Add ruler.
-set colorcolumn=80
-
 " Change the default mapping and the default command to invoke CtrlP.
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -133,12 +130,6 @@ let g:go_highlight_operators=1
 let g:go_highlight_build_constraints=1
 let g:go_fmt_command="goimports"
 nnoremap <C-l> :GoDecls<CR>
-
-" HTML specific settings.
-augroup filetype_html
-    autocmd!
-    autocmd FileType html setlocal shiftwidth=2 tabstop=2
-augroup END
 
 " C++ specific settings.
 let g:syntastic_cpp_compiler = 'clang++'
