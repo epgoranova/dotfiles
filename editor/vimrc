@@ -25,6 +25,16 @@ Plugin 'fatih/vim-go'
 call vundle#end()         " required by Vundle
 filetype plugin indent on " required by Vundle
 
+" Customize the Search highlights.
+function! s:base16_customize() abort
+  call Base16hi("Search", g:base16_gui01, g:base16_gui09, g:base16_cterm01, g:base16_cterm09, "", "")
+endfunction
+
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
 " Colorscheme settings.
 syntax on
 if $COLORTERM == 'gnome-terminal'
@@ -150,3 +160,9 @@ set statusline+=%*
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
+
+" Highlight all search matches.
+set hlsearch
+
+" Press return to temporarily get out of the highlighted search.
+nnoremap <CR> :nohlsearch<CR><CR>
