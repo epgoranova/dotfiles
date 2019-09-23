@@ -31,8 +31,7 @@ if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 let base16colorspace=256
-set background=dark
-colorscheme base16-tomorrow
+colorscheme base16-tomorrow-night
 
 " Reload files changed outside of vim.
 set autoread
