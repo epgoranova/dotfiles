@@ -1,0 +1,28 @@
+# Aliases
+alias ll='ls -lah'
+alias te='open -a TextEdit'
+
+# Show current branch in the prompt
+setopt prompt_subst
+. ~/.zsh/git-prompt.sh
+
+# Set primary prompt styling
+export PROMPT=$'\e[0;33m%n\e[0m: \e[0;32m%~\e[0m\e[0;34m$(__git_ps1)\e[0m\n$ '
+export RPROMPT=""
+
+# Set iTerm2 shortcuts
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
+# Adjust the time output format
+export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+
+# Load Git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.sh
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
+
+# Kubectl completion
+source <(kubectl completion zsh)

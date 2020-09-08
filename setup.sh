@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -50,18 +50,18 @@ done
 
 # setup scripts
 
-BASH_SCRIPTS="$HOME/.bash"
-if [ ! -d "$BASH_SCRIPTS" ]; then
-    mkdir "$BASH_SCRIPTS"
+SCRIPTS="$HOME/.zsh"
+if [ ! -d "$SCRIPTS" ]; then
+    mkdir "$SCRIPTS"
 fi
 
-if [ ! -f "$BASH_SCRIPTS/git-prompt.sh" ]; then
-    cp "$DOTFILES/scripts/git-prompt.sh" "$BASH_SCRIPTS/git-prompt.sh"
+if [ ! -f "$SCRIPTS/git-prompt.sh" ]; then
+    cp "$DOTFILES/scripts/git-prompt.sh" "$SCRIPTS/git-prompt.sh"
     echo "Set up git prompt"
 fi
 
-if [ ! -f "$BASH_SCRIPTS/git-completion.sh" ]; then
-    cp "$DOTFILES/scripts/git-completion.sh" "$BASH_SCRIPTS/git-completion.sh"
+if [ ! -f "$SCRIPTS/git-completion.sh" ]; then
+    cp "$DOTFILES/scripts/git-completion.sh" "$SCRIPTS/git-completion.sh"
     echo "Set up git completion"
 fi
 
