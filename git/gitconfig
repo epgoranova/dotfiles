@@ -35,6 +35,9 @@
     excludesfile = ~/.gitignore
     autocrlf = false
 
+[pull]
+    rebase = true
+
 [push]
     default = tracking
 
