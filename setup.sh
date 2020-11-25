@@ -8,12 +8,14 @@ link() {
 
      if [ -e "$DST" ]; then
          if [ -L "$DST" ]; then
-              read -r -p "Target $DST is a symlink. Do you want to replace it? (y/n) "
+              echo -n "Target $DST is a symlink. Do you want to replace it? (y/n) "
+              read REPLY
               if [[ $REPLY =~ ^[^Yy]$ ]]; then
                   return
               fi;
           else
-              read -r -p "Target $DST exists and is not a symlink. Do you want to replace it? (y/n) "
+              echo -n "Target $DST exists and is not a symlink. Do you want to replace it? (y/n) "
+              read REPLY
               if [[ $REPLY =~ ^[^Yy]$ ]]; then
                   return
               fi;
@@ -24,7 +26,9 @@ link() {
     echo "Created symlink $DST"
 }
 
-# create symlinks to the dotfiles
+# 1. Create symlinks to the dotfiles
+
+echo "Creating symlinks..."
 
 for DIR in editor git shell; do
     for SOURCE in "$DOTFILES/$DIR"/*; do
@@ -48,27 +52,33 @@ for DIR in editor git shell; do
     done
 done
 
-# setup scripts
+echo ""
+
+# 2. Setup scripts
+
+echo "Setting up ~/.zsh scripts..."
 
 SCRIPTS="$HOME/.zsh"
 if [ ! -d "$SCRIPTS" ]; then
     mkdir "$SCRIPTS"
 fi
 
-if [ ! -f "$SCRIPTS/git-prompt.sh" ]; then
-    cp "$DOTFILES/scripts/git-prompt.sh" "$SCRIPTS/git-prompt.sh"
-    echo "Set up git prompt"
-fi
+curl -s -o "$SCRIPTS/git-completion.zsh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+curl -s -o "$SCRIPTS/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
-if [ ! -f "$SCRIPTS/git-completion.sh" ]; then
-    cp "$DOTFILES/scripts/git-completion.sh" "$SCRIPTS/git-completion.sh"
-    echo "Set up git completion"
-fi
+echo ""
 
-# Get tmux plugin manager.
+# 3. Get tmux plugin manager.
+
+echo "Setting up the tmux plugin manager..."
 
 TMUX_PLUGINS="$HOME/.tmux/plugins/tmp";
 if [ ! -d "$TMUX_PLUGINS" ]; then
     echo "Getting tmux plugin manager...";
     git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGINS";
 fi
+
+echo ""
+
+
+echo "Setup complete!"

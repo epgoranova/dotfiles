@@ -20,7 +20,6 @@ bindkey "^[e" end-of-line
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 # Load Git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.sh
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
