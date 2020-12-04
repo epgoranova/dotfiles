@@ -25,23 +25,8 @@ Plugin 'fatih/vim-go'
 call vundle#end()         " required by Vundle
 filetype plugin indent on " required by Vundle
 
-" Customize the Search highlights.
-function! s:base16_customize() abort
-  call Base16hi("Search", g:base16_gui01, g:base16_gui09, g:base16_cterm01, g:base16_cterm09, "", "")
-endfunction
-
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-
-" Colorscheme settings.
+" Turn on syntax highlights
 syntax on
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
-let base16colorspace=256
-colorscheme base16-tomorrow-night
 
 " Reload files changed outside of vim.
 set autoread
