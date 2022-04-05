@@ -1,6 +1,7 @@
 # Aliases
 alias ll='ls -lah'
 alias te='open -a TextEdit'
+alias chrome='open -a "Google Chrome"'
 
 # Show current branch in the prompt
 setopt prompt_subst
