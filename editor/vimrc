@@ -12,14 +12,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'chriskempson/base16-vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'fatih/vim-go'
 
 " All Plugins must be added before the following line.
 call vundle#end()         " required by Vundle
@@ -115,15 +111,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-" Go specific settings.
-let g:go_highlight_functions=1
-let g:go_highlight_methods=1
-let g:go_highlight_structs=1
-let g:go_highlight_operators=1
-let g:go_highlight_build_constraints=1
-let g:go_fmt_command="goimports"
-nnoremap <C-l> :GoDecls<CR>
 
 " C++ specific settings.
 let g:syntastic_cpp_compiler = 'clang++'
