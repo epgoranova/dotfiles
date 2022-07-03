@@ -133,6 +133,8 @@ set statusline+=%*
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
+" Remove extra prefix chars automatically when Shift-J on commented lines
+set formatoptions+=j
 
 
 "" SEARCH """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
