@@ -133,8 +133,23 @@ set statusline+=%*
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
+
+
+"" SEARCH """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Highlight all search matches.
 set hlsearch
+
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+
+" Ignore capital letters during search.
+set ignorecase
+
+" Override the ignorecase option if the search pattern contains upper
+" case characters. Only used when the search pattern is typed and
+" ignorecase option is on.
+set smartcase
 
 " Press return to temporarily get out of the highlighted search.
 nnoremap <CR> :nohlsearch<CR><CR>
