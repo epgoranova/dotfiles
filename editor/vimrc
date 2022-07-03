@@ -50,8 +50,9 @@ set laststatus=2
 set autoindent
 
 " Tab to spaces.
-set tabstop=4
-set shiftwidth=4
+" Global settings for all file types but may be overridden in ftplugin.
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " Automatically save changes when focus lost.
