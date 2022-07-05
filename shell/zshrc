@@ -3,12 +3,15 @@ alias ll='ls -lah'
 alias te='open -a TextEdit'
 alias chrome='open -a "Google Chrome"'
 
-# Show current branch in the prompt
-setopt prompt_subst
-. ~/.zsh/git-prompt.sh
+# Run the zsh built-in function vcs_info to automatically get information from VCSs.
+autoload -Uz vcs_info                   # Load version control information
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '(%b)' # Format vcs_info_msg_0_ for git
 
 # Set primary prompt styling
-export PROMPT=$'\e[0;33m%n\e[0m: \e[0;32m%~\e[0m\e[0;34m$(__git_ps1)\e[0m\n$ '
+setopt prompt_subst # Enable parameter expansion, command substitution and
+                    # arithmetic expansion in prompts
+export PROMPT=$'\e[0;33m%n\e[0m: \e[0;32m%~\e[0m\e[0;34m ${vcs_info_msg_0_}\e[0m\n$ '
 export RPROMPT=""
 
 # Set iTerm2 shortcuts
