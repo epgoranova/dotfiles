@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'editorconfig/editorconfig-vim'
@@ -59,7 +58,12 @@ set expandtab
 set autowrite
 
 " Automatically strip trailing whitespace on save.
-autocmd BufWritePre <buffer> StripWhitespace
+function! TrimTrailingWhitespace()
+  let l:winview = winsaveview()
+  silent! %s/\s\+$//
+  call winrestview(l:winview)
+endfunction
+autocmd BufWritePre * call TrimTrailingWhitespace()
 
 " Change the default mapping and the default command to invoke CtrlP.
 let g:ctrlp_map = '<c-p>'
