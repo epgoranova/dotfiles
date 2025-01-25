@@ -11,7 +11,7 @@ zstyle ':vcs_info:git:*' formats '(%b)' # Format vcs_info_msg_0_ for git
 # Set primary prompt styling
 setopt prompt_subst # Enable parameter expansion, command substitution and
                     # arithmetic expansion in prompts
-export PROMPT=$'\e[0;33m%n\e[0m: \e[0;32m%~\e[0m\e[0;34m ${vcs_info_msg_0_}\e[0m\n$ '
+export PROMPT=$'\n%B%F{250}%~%f%b %F{2}${vcs_info_msg_0_}%f\n> '
 export RPROMPT=""
 
 # Set iTerm2 shortcuts
